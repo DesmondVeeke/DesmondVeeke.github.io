@@ -1,0 +1,55 @@
+---js
+const eleventyNavigation = {
+	key: "Home",
+	order: 1
+};
+
+const numberOfLatestPostsToShow = 3;
+---
+{% set postsCount = collections.posts | length %}
+{% set latestPostsCount = postsCount | min(numberOfLatestPostsToShow) %}
+
+<div intro>
+Om eens gezellig te buurten over technologie en de digitale wereld:
+</div>
+</br>
+<div afspraak>
+
+<!-- Google Calendar Appointment Scheduling begin -->
+<link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
+<script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+<script>
+(function() {
+  var target = document.currentScript;
+  window.addEventListener('load', function() {
+    calendar.schedulingButton.load({
+      url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ2YD61VLEBl-9BrU1NNDGJA8LVMlp2dhKa5HKWjOi-lUgZxl9Qq4TygNnV0o6Ym33M2MbJkWXR4?gv=true',
+      color: '#039BE5',
+      label: 'Boek een afspraak',
+      target,
+    });
+  });
+})();
+</script>
+<!-- end Google Calendar Appointment Scheduling -->
+</div>
+
+<h1>Laatste {{ latestPostsCount }} posts{% if latestPostsCount != 1 %}s{% endif %}</h1>
+
+{% set postslist = collections.posts | head(-1 * numberOfLatestPostsToShow) %}
+{% set postslistCounter = postsCount %}
+{% include "postslist.njk" %}
+
+{% set morePosts = postsCount - numberOfLatestPostsToShow %}
+{% if morePosts > 0 %}
+<p>{{ morePosts }} more post{% if morePosts != 1 %}s{% endif %} can be found in <a href="blog.njk">the archive</a>.</p>
+{% endif %}
+
+{# List every content page in the project #}
+{#
+<ul>
+	{%- for entry in collections.all %}
+	<li><a href="{{ entry.url }}"><code>{{ entry.url }}</code></a></li>
+	{%- endfor %}
+</ul>
+#}
