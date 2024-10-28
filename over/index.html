@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="nl">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Ask Desmond</title>
+		<meta name="description" content="Op deze pagina probeer ik met nieuwsgierige mensen de mogelijkheden van de digitale wereld en computers te ontdekken.">
+		
+		<style>/* This is an arbitrary CSS string added to the bundle */
+/* Defaults */
+:root {
+	--font-family: -apple-system, system-ui, sans-serif;
+	--font-family-monospace: Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono, Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New, Courier, monospace;
+}
+
+/* Theme colors */
+:root {
+	--color-gray-20: #e0e0e0;
+	--color-gray-50: #C0C0C0;
+	--color-gray-90: #333;
+
+	--background-color: #000000;
+
+	--text-color: #cccccc;
+	--text-color-link: #cccccc;
+	--text-color-link-active: #cccccc;
+	--text-color-link-visited: #cccccc;
+
+	--syntax-tab-size: 2;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-gray-20: #e0e0e0;
+		--color-gray-50: #C0C0C0;
+		--color-gray-90: #dad8d8;
+
+		/* --text-color is assigned to --color-gray-_ above */
+		--text-color-link: #1493fb;
+		--text-color-link-active: #6969f7;
+		--text-color-link-visited: #a6a6f8;
+
+		--background-color: #15202b;
+	}
+}
+
+
+/* Global stylesheet */
+* {
+	box-sizing: border-box;
+}
+
+@view-transition {
+	navigation: auto;
+}
+
+html,
+body {
+	padding: 0;
+	margin: 0 auto;
+	font-family: var(--font-family);
+	color: var(--text-color);
+	background-color: var(--background-color);
+}
+html {
+	overflow-y: scroll;
+}
+body {
+	max-width: 40em;
+}
+
+/* https://www.a11yproject.com/posts/how-to-hide-content/ */
+.visually-hidden {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+p:last-child {
+	margin-bottom: 0;
+}
+p {
+	line-height: 1.5;
+}
+
+li {
+	line-height: 1.5;
+}
+
+a[href] {
+	color: var(--text-color-link);
+}
+a[href]:visited {
+	color: var(--text-color-link-visited);
+}
+a[href]:hover,
+a[href]:active {
+	color: var(--text-color-link-active);
+}
+
+main,
+footer {
+	padding: 1rem;
+}
+main :first-child {
+	margin-top: 0;
+}
+
+header {
+	border-bottom: 1px dashed var(--color-gray-20);
+}
+header:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.links-nextprev {
+	display: flex;
+	justify-content: space-between;
+	gap: .5em 1em;
+	list-style: "";
+	border-top: 1px dashed var(--color-gray-20);
+	padding: 1em 0;
+}
+.links-nextprev > * {
+	flex-grow: 1;
+}
+.links-nextprev-next {
+	text-align: right;
+}
+
+table {
+	margin: 1em 0;
+}
+table td,
+table th {
+	padding-right: 1em;
+}
+
+pre,
+code {
+	font-family: var(--font-family-monospace);
+}
+pre:not([class*="language-"]) {
+	margin: .5em 0;
+	line-height: 1.375; /* 22px /16 */
+	-moz-tab-size: var(--syntax-tab-size);
+	-o-tab-size: var(--syntax-tab-size);
+	tab-size: var(--syntax-tab-size);
+	-webkit-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	overflow-x: auto;
+}
+code {
+	word-break: break-all;
+}
+
+/* Header */
+header {
+	display: flex;
+	gap: 1em .5em;
+	flex-wrap: wrap;
+	align-items: center;
+	padding: 1em;
+}
+.home-link {
+	font-size: 1em; /* 16px /16 */
+	font-weight: 700;
+	margin-right: 2em;
+}
+.home-link:link:not(:hover) {
+	text-decoration: none;
+}
+
+/* Nav */
+.nav {
+	display: flex;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+.nav-item {
+	display: inline-block;
+	margin-right: 1em;
+}
+.nav-item a[href]:not(:hover) {
+	text-decoration: none;
+}
+.nav a[href][aria-current="page"] {
+	text-decoration: underline;
+}
+
+/* Posts list */
+.postlist {
+	list-style: none;
+	padding: 0;
+	padding-left: 1.5rem;
+}
+.postlist-item {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	counter-increment: start-from -1;
+	margin-bottom: 1em;
+}
+.postlist-item:before {
+	display: inline-block;
+	pointer-events: none;
+	content: "" counter(start-from, decimal-leading-zero) ". ";
+	line-height: 100%;
+	text-align: right;
+	margin-left: -1.5rem;
+}
+.postlist-date,
+.postlist-item:before {
+	font-size: 0.8125em; /* 13px /16 */
+	color: #cccccc;
+}
+.postlist-date {
+	word-spacing: -0.5px;
+}
+.postlist-link {
+	font-size: 1.1875em; /* 19px /16 */
+	font-weight: 700;
+	flex-basis: calc(100% - 1.5rem);
+	padding-left: .25em;
+	padding-right: .5em;
+	text-underline-position: from-font;
+	text-underline-offset: 0;
+	text-decoration-thickness: 1px;
+}
+.postlist-item-active .postlist-link {
+	font-weight: bold;
+}
+
+/* Tags */
+.post-tag {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-transform: capitalize;
+	font-style: italic;
+}
+.postlist-item > .post-tag {
+	align-self: center;
+}
+
+/* Tags list */
+.post-metadata {
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: .5em;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.post-metadata time {
+	margin-right: 1em;
+}</style>
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
+
+		<header>
+			<a href="/eleventy-base-blog/" class="home-link">Ask Desmond</a>
+			<nav>
+				<h2 class="visually-hidden" id="top-level-navigation-menu">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/eleventy-base-blog/">Home</a></li>
+					<li class="nav-item"><a href="/eleventy-base-blog/over/" aria-current="page">Doel</a></li>
+					<li class="nav-item"><a href="/eleventy-base-blog/geld/">Geld?</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="skip">
+			<heading-anchors>
+				
+<h1 id="doel">Doel</h1>
+<p>Mensen helpen die de mogelijkheden van digitalisering willen ontdekken</p>
+<ul>
+<li>Programmeren / coderen</li>
+<li>(Softwarematige) oplossingen ontwerpen</li>
+<li>Oplossingen vinden voor voor bottlenecks in dagelijkse werkzaamheden</li>
+<li>Automatiseringen</li>
+<li>Processen in kaart brengen</li>
+</ul>
+<h3 id="als-je-vraag-begint-met">Als je vraag begint met:</h3>
+<ul>
+<li>&quot;Is het mogelijk om....&quot;</li>
+<li>&quot;Hoe zorg ik er voor dat...&quot;</li>
+<li>&quot;Ik doe vaak ... kan dat niet beter?&quot;</li>
+</ul>
+<p>Dan heb je het juiste idee! Elke woensdagavond 19.00 - 21.00 heb ik tijd vrij gemaakt om afspraken aan te kunnen nemen. Deze afspraken zijn <strong>vrijblijvend en gratis</strong>.</p>
+<p>Voorlopig is het adres daarvoor: <strong>desmond.veeke@gmail.com</strong></p>
+<!-- Google Calendar Appointment Scheduling begin -->
+<link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
+<script src="https://calendar.google.com/calendar/scheduling-button-script.js" async=""></script>
+<script>
+(function() {
+  var target = document.currentScript;
+  window.addEventListener('load', function() {
+    calendar.schedulingButton.load({
+      url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ2YD61VLEBl-9BrU1NNDGJA8LVMlp2dhKa5HKWjOi-lUgZxl9Qq4TygNnV0o6Ym33M2MbJkWXR4?gv=true',
+      color: '#039BE5',
+      label: 'Boek een afspraak',
+      target,
+    });
+  });
+})();
+</script>
+<!-- end Google Calendar Appointment Scheduling -->
+<p>Mijn voorkeur heeft om deze afspraken online te houden. Stuur in je mailtje wat je wil bespreken en ik reageer zo snel mogelijk met een datum die ik kan. Houdt er rekening mee dat dit dus altijd op een woensdag avond is.
+De vragen die je hebt en de dingen die daar uit komen worden artikelen op de website. Zo ontstaat er hopelijk een bruikbare kennisbank waar iedereen wat aan heeft.</p>
+<h2 id="mijn-geschiedenis-met-beginnen-met-technologie">Mijn geschiedenis met beginnen (met technologie)</h2>
+<p>Vijf jaar geleden kreeg ik eindelijk het besef dat wanneer je veel met computers bezig bent, omdat je het leuk vind, je er waarschijnlijk ook je werk van moet maken. Het is leuk om nieuwe dingen te leren en een paar vrienden van me waren echt gestoord met een computer. Problemen herkennen en weten hoe je ze kan tackelen door automatisering en dat allemaal razendsnel op text editors waar ik nog nooit van gehoord had (forever Microsoft Word-user). Dus ik begon aan een cursus Python op Udemy.</p>
+<p>Ik was meteen verkocht.
+Er zijn weinig dingen waar ik zo heerlijk van kan genieten als mijn kop stoten tegen een probleem op de computer. Computers zijn lekker eerlijk. Wanneer je eindelijk de juiste logica hebt toegepast komt er uit rollen wat je van te voren had bedacht. Als het niet klopt krijg je errors of crashes; dat is niet persoonlijk. Geruststellende gedachte, toch? Mensen die dit zelf hebben meegemaakt weten waar ik het over heb.
+Tot nu toe lijkt me dit een vrij helder verhaal. Maar er komen wat drempels aan, d</p>
+<p>Op een gegeven moment groeide mijn enthousiasme heel erg maar had ik weinig mensen om me heen die ook aan het begin stonden van hun softwareontdekkingsreis. Bij veel andere dingen die ik leerde kon ik prima mensen vinden die goede ideeen hadden over wat ik moest doen om beter te worden in mijn nieuwe interesse. Bij het maken van software ging dat anders.</p>
+<p>Mijn vrienden werken aan hele andere problemen dan het maken van een boter-kaas-eieren applicatie. Wanneer ik ze mijn code liet zien vonden ze het moeilijk om me te helpen. Ze stonden al zo ver verwijderd van hoe het was toen ze zelf begonnen waren. Daarnaast ontbrak er ook het een en ander in de Udemy course waar ik mijn vinger niet echt op kon leggen. Kon ik het maar aan iemand vragen...</p>
+<h3 id="uiteindelijk-ben-ik-terug-gegaan-naar-school">Uiteindelijk ben ik terug gegaan naar school</h3>
+<p>Eigenlijk had ik dat afgezworen. Om allerlei redenen die in het grotere plaatje nog steeds best waar zijn, maar er was nu iets anders. Mijn nieuwsgierigheid was volledig aangewakkerd en ik was zelf tot de conclusie gekomen dat wat ik miste begeleiding en klasgenoten was. Het is een van de beste keuzes die ik ooit gemaakt heb. Geen huiswerk, geen tentamens, alleen projecten. Onderzoek doen, toepassen, kop stoten, feedback krijgen, onderzoek, toepassen, kop stoten, je snapt het wel.</p>
+<p>Dan kan je misschien denken: &quot;Waarom maak je deze website dan? Is je advies dan niet gewoon aan iedereen om terug naar school te gaan?&quot;. Ja kan. Ik was 29 toen ik terugkeerde in het schoolsysteem en de hoeveelheid mensen (niet op 2 handen te tellen) die zeiden dat ze het indrukwekkend vonden gaf me niet bepaald het idee dat dit een weg is die vaak wordt bewandelt.</p>
+<h2 id="persoonlijke-korte-lijntjes">Persoonlijke, korte lijntjes</h2>
+<p>Als menselijke vraagbaak in een wereld die langzaamaan wordt opgeslokt door A.I-hype biedt ik mijn diensten aan. Toen ik begon met programmeren bestond het vinden van een antwoord uit google + stackoverflow en als je pech had Quora. Dat is natuurlijk anders nu. Al merk ik dat wanneer ik mijn vragen aan iemand anders voor kan leggen we er samen vaak sneller uit komen. Of ze nu verstand hebben van technologie of niet.</p>
+<h2 id="vaak-draait-alles-om-geld">Vaak draait alles om geld</h2>
+<p>Omdat ik begrijp dat dit nogal als een raar idee over kan komen heb ik hier een <a href="/eleventy-base-blog/geld/">volledig aparte pagina</a> voor opgericht.</p>
+<h2 id="leren-en-enthousiasme">Leren en enthousiasme</h2>
+<p>Door enthousiasme wordt je nieuwsgierig. Door nieuwsgierigheid ga je leren en kom je te weten wat je niet weet. De dingen die je niet weet zitten vol potentie wat je dan weer enthousiast maakt. Wanneer ik in deze cyclus zit weet ik niet van ophouden. Als je jezelf daarin herkent dan ben je aan het juiste adres.</p>
+<h2 id="wat-ik-hoop-te-halen-uit-dit-idee">Wat ik hoop te halen uit dit idee:</h2>
+<ul>
+<li>Veel verschillende problemen verkennen en herkennen</li>
+<li>Samen vette oplossingen verzinnen</li>
+<li>Mensen op weg helpen met programmeren</li>
+<li>Verbeteren van mijn schrijfkunsten</li>
+<li>Enthousiaste mensen leren kennen</li>
+<li>Opzetten van een simpele kennisbank</li>
+<li>Zinnige en leuke tijdbesteding</li>
+</ul>
+<p>Ik vind het jammer dat mijn nederlands steeds slechter is geworden doordat ik vooral in het engels communiceer wanneer ik schrijf. Mijn doel is om beter en interessanter te schrijven.</p>
+
+
+			</heading-anchors>
+		</main>
+
+		<footer>
+			<p><em>Gebouwd met behulp van Eleventy door Desmond Veeke. Opgericht 28 Oktober 2024</em></p>
+		</footer>
+
+		<!-- This page `/eleventy-base-blog/over/` was built on 2024-10-28T15:57:28.853Z -->
+		<script type="module" src="/eleventy-base-blog/dist/rJ3_G-2ArF.js"></script>
+	</body>
+</html>

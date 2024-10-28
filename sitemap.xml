@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+	
+	<url>
+		<loc>https://askdesmond.dev/eleventy-base-blog/blog/firstpost/</loc>
+		<lastmod>2024-10-24</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://askdesmond.dev/eleventy-base-blog/geld/</loc>
+		<lastmod>2024-10-28</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://askdesmond.dev/eleventy-base-blog/</loc>
+		<lastmod>2024-10-28</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://askdesmond.dev/eleventy-base-blog/over/</loc>
+		<lastmod>2024-10-28</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://askdesmond.dev/eleventy-base-blog/tags/</loc>
+		<lastmod>2024-10-28</lastmod>
+	</url>
+</urlset>
