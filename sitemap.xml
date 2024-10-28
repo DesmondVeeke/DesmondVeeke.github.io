@@ -2,27 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 	
 	<url>
-		<loc>https://askdesmond.dev/eleventy-base-blog/blog/firstpost/</loc>
+		<loc>https://askdesmond.dev/blog/firstpost/</loc>
 		<lastmod>2024-10-24</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://askdesmond.dev/eleventy-base-blog/geld/</loc>
+		<loc>https://askdesmond.dev/geld/</loc>
 		<lastmod>2024-10-28</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://askdesmond.dev/eleventy-base-blog/</loc>
+		<loc>https://askdesmond.dev/</loc>
 		<lastmod>2024-10-28</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://askdesmond.dev/eleventy-base-blog/over/</loc>
+		<loc>https://askdesmond.dev/over/</loc>
 		<lastmod>2024-10-28</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://askdesmond.dev/eleventy-base-blog/tags/</loc>
+		<loc>https://askdesmond.dev/tags/</loc>
 		<lastmod>2024-10-28</lastmod>
 	</url>
 </urlset>
