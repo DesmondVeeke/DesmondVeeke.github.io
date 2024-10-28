@@ -42,7 +42,7 @@ Voorlopig is het adres daarvoor: **desmond.veeke@gmail.com**
 </script>
 <!-- end Google Calendar Appointment Scheduling -->
 
-Mijn voorkeur heeft om deze afspraken online te houden. Stuur in je mailtje wat je wil bespreken en ik reageer zo snel mogelijk met een datum die ik kan. Houdt er rekening mee dat dit dus altijd op een woensdag avond is.
+Mijn voorkeur heeft om deze afspraken online te houden. Houdt er rekening mee dat dit dus altijd op een woensdag avond is.
 De vragen die je hebt en de dingen die daar uit komen worden artikelen op de website. Zo ontstaat er hopelijk een bruikbare kennisbank waar iedereen wat aan heeft. 
 
 
